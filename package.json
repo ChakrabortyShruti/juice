@@ -1,0 +1,25 @@
+{
+  "name": "juice",
+  "version": "1.0.0",
+  "description": "Juice Data Analysis",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --recursive",
+    "min": "mocha -R min --recursive",
+    "watch": "mocha -R min --watch --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crazylab/juice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crazylab/juice/issues"
+  },
+  "homepage": "https://github.com/crazylab/juice#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
