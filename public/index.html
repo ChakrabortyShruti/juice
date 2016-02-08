@@ -9,46 +9,42 @@
     </body>
     <script type="text/javascript">
     var scale  =d3.scale.linear()
-        .domain([0,1500])
+        .domain([0,6000])
         .range([0,500]);
 
     var data;
     var holder = d3.select("body")
                     .append("svg")
                     .attr("width", 1000)
-                    .attr('height', 5000);
-
-    // holder.style({float:"left"});
+                    .attr('height', 800);
 
     d3.json('/data.json',function(err,json){
         data = json;
-        var graph = holder
-                .selectAll('rect')
+
+        var rectGroup = holder
+                .selectAll("g")
                 .data(data)
                 .enter()
-                .append("rect")
-                .style("fill", "grey")
-                .style("stroke","black")
+                .append("g");
+
+        var rect = rectGroup
+                .append("rect");
+
+        var recAttr = rect
                 .attr("x", 10)
                 .attr("y", function(d, index){return index*25;})
                 .attr("width", function(d){return scale(d.count)})
                 .attr("height", 20)
-                .text(function(d){return d.name;});
-        var text = holder
-                    .selectAll("text")
-                    .data(data)
-                    .enter()
-                    .append('text')
-                    .attr("x", function(d){return scale(d.count) + 20;})
-                    .attr("y", function(d, index){return index*25;})
-                    .text(function(d){return d.name;})
-                    .attr("fill", "black")
+                .style("fill", "grey")
+                .style("stroke","black");
 
+        var text = rectGroup
+                .append("text");
 
-        // graph.selectAll('rect')
-
-            // <text x="0" y="15" fill="red">I love SVG!</text>
-            // .text(function(d){return d.name;});
+        var textAttr = text
+                .text(function(d){return d.name;})
+                .attr("x",10)
+                .attr("y",function(d,index){return (25*index)+15;});
     });
     </script>
 </html>
