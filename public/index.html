@@ -13,24 +13,42 @@
         .range([0,500]);
 
     var data;
-    var holder = d3.select("body").append("div");
-    holder.style({transform:"rotate(180deg)",float:"left"});
+    var holder = d3.select("body")
+                    .append("svg")
+                    .attr("width", 1000)
+                    .attr('height', 5000);
+
+    // holder.style({float:"left"});
 
     d3.json('/data.json',function(err,json){
         data = json;
-        console.log(data);
-        holder.selectAll("div")
-        .data(data)
-        .enter()
-        .append("div")
-        .style({"background-color":"grey","margin":"1px","display":"inline-block",position:"relative",bottom:"0px"})
-        .style("height",function(d){return scale(d.count)+"px"})
-        .text(function(d){
-            return d.name;
-        });
+        var graph = holder
+                .selectAll('rect')
+                .data(data)
+                .enter()
+                .append("rect")
+                .style("fill", "grey")
+                .style("stroke","black")
+                .attr("x", 10)
+                .attr("y", function(d, index){return index*25;})
+                .attr("width", function(d){return scale(d.count)})
+                .attr("height", 20)
+                .text(function(d){return d.name;});
+        var text = holder
+                    .selectAll("text")
+                    .data(data)
+                    .enter()
+                    .append('text')
+                    .attr("x", function(d){return scale(d.count) + 20;})
+                    .attr("y", function(d, index){return index*25;})
+                    .text(function(d){return d.name;})
+                    .attr("fill", "black")
+
+
+        // graph.selectAll('rect')
+
+            // <text x="0" y="15" fill="red">I love SVG!</text>
+            // .text(function(d){return d.name;});
     });
-
-
-
     </script>
 </html>
