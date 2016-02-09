@@ -22,7 +22,7 @@ var visualizeData = function(holder, data){
                         .selectAll("g")
                         .data(data)
                         .enter()
-                        .append("g")
+                        .append("g");
 
     var bar = lineGroup
                     .append("line")
@@ -35,11 +35,12 @@ var visualizeData = function(holder, data){
 
     lineGroup.append("title")
             .text(function(d){return d.count;});
+
     var textGroup = lineGroup.append('g');
-                textGroup
-                    .append("text")
-                    .text(function(d){return d.name;})
-                    .attr("x",function(d, i){return (i*50)+10;})
-                    .attr("y", 780)
-    // textGroup.attr("transform", "rotate(45 0 0)");
+
+    textGroup.append("text")
+            .text(function(d){return d.name;})
+            .attr("x",function(d, i){return (i*50)+10;})
+            .attr("y", 780)
+            .style("writing-mode","tb");
 }
