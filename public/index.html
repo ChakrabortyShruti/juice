@@ -3,49 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <script type="text/javascript" src = "js/d3.v3.min.js"></script>
+        <script type="text/javascript" src="js/d3.v3.min.js"></script>
     </head>
     <body>
     </body>
-    <script type="text/javascript">
-    var scale  =d3.scale.linear()
-        .domain([0,6000])
-        .range([0,700]);
-
-    var data;
-    var holder = d3.select("body")
-                    .append("svg")
-                    .attr("width", 1000)
-                    .attr('height', 750);
-
-    d3.json('/data.json',function(err,json){
-        data = json;
-
-        var rectGroup = holder
-                .selectAll("g")
-                .data(data)
-                .enter()
-                .append("g")
-
-
-        var rect = rectGroup
-                .append("rect");
-
-        var recAttr = rect
-                .attr("x", 10)
-                .attr("y", function(d, index){return index*25;})
-                .attr("width", function(d){return scale(d.count)})
-                .attr("height", 20)
-                .style("fill", "grey")
-                .style("stroke","black")
-
-        var text = rectGroup
-                .append("text");
-
-        var textAttr = text
-                .text(function(d){return d.name;})
-                .attr("x",function(d){return scale(d.count)+20})
-                .attr("y",function(d,index){return (25*index)+15;});
-    });
-    </script>
+    <script type="text/javascript" src="js/render.js"></script>
 </html>
