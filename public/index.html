@@ -4,10 +4,21 @@
         <meta charset="utf-8">
         <title></title>
         <script type="text/javascript" src="js/d3.v3.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <style media="screen">
+            .axis path {
+                fill:none;
+                stroke:#777;
+            }
+        </style>
     </head>
     <body align="center">
+        <h1>Juice Data Representation</h1>
+        <button type="button" id="juiceCount">Juice Consumption</button>
+        <button type="button" id="sugarCount">Sugar Consumption</button>
+        <button type="button" id="swipeCount">Swipe Count</button>
+        <button type="button" id="timeCount">Juice Consumption Frequency</button>
         <div class="canvas">
-
         </div>
     </body>
     <script type="text/javascript" src="js/render.js"></script>
